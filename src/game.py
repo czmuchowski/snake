@@ -6,6 +6,7 @@ from src.state import GameState
 from src.config import GameConfig
 from src import unit
 
+
 class Game():
     def __init__(self):
         pygame.init()
@@ -18,7 +19,7 @@ class Game():
         self.clock = pygame.time.Clock()
         self.gameState = GameState()
         self.snake = unit.Snake(self.gameState)
-        #pygame.key.set_repeat(1, 100) # key interaption
+        # pygame.key.set_repeat(1, 100)
         self.moveCommandX = 0
         self.moveCommandY = 0
         self.running = True
@@ -43,23 +44,23 @@ class Game():
                     self.moveCommandY = GameConfig.STEP
                 if keys[pygame.K_UP]:
                     self.moveCommandY = -GameConfig.STEP
-                    
+
     def update(self):
         self.gameState.update(self.moveCommandX, self.moveCommandY)
 
     def render(self):
         unit.Background.render()
-       
+
         if self.gameState.isGameOver():
             unit.GameOver.render()
         else:
             self.snake.render()
-        
-        pygame.display.update() 
 
-    def run(self):    
+        pygame.display.update()
+
+    def run(self):
         while self.running:
             self.processInput()
             self.update()
-            self.render()        
+            self.render()
             self.clock.tick(GameConfig.SCREEN_FRAMES_PER_SECOND)
