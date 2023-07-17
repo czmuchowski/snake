@@ -1,0 +1,1 @@
+# -*- coding: utf-8 -*-import osfrom src import gameos.environ['SDL_VIDEO_CENTERED'] = '1'game = game.Game()game.run()
